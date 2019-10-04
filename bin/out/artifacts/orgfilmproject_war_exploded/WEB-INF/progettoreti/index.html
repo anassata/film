@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
+
+    <title>My films</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+
+
+    <!-- Custom styles for this template -->
+    <link href="assets/css/main.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="assets/js/dirPagination.js"></script>
+    <script src="assets/js/hover.zoom.js"></script>
+    <script src="assets/js/hover.zoom.conf.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Static navbar -->
+    <div class="navbar navbar-inverse navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">MY FILMS</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="addfilm.html">AGGIUNGI FILM</a></li>
+            <li><a href="statistiche.html">STATISTICHE</a></li>
+                      
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+
+	
+	<!-- +++++ Projects Section +++++ -->
+  <div  ng-app="myApp" ng-controller="myCtrl" id="content">	
+    <!-- Search form -->
+    <div>
+<input ng-model="searchText" class="form-control" type="text" placeholder="Search" aria-label="Search">
+
+    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Titolo</th>
+          <th>Anno</th>
+          <th>Genere</th>
+          <th>Recensione</th>
+          <th>userid</th>
+          
+        </tr>
+      </thead>
+
+      <tbody dir-paginate= "m in film | filter:searchText | orderBy:-'title' | itemsPerPage:10" >
+
+        <tr>
+
+          <td>{{m.title }}</td>
+          <td>{{m.year }}</td>
+          <td>{{m.genre}}</td>
+          <td>{{m.review}}</td>
+          <td>{{m.user_id}}</td>
+        
+
+        </tr>
+
+      </tbody>
+    </table>
+    <style>
+      .paginatio {
+        display: inline-block;
+      }
+      .paginatio a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+      }
+      .paginatio a.active {
+        background-color: #4CAF50;
+        color: white;
+      }
+      .paginatio a:hover:not(.active) {background-color: #ddd;}
+    </style>
+    <dir-pagination-controls class="paginatio"
+            max-size="8"
+            direction-links="false"
+            boundary-links="false"
+            >
+    </dir-pagination-controls>
+  </div>
+					
+
+
+
+<script>
+	
+	
+ 	var app = angular.module('myApp', ['angularUtils.directives.dirPagination']);
+app.controller('myCtrl', function($scope, $http) {
+  $http.get("http://localhost:8080/film/first")
+  .then(function(response) {
+      $scope.film = response.data;
+
+      
+  });
+
+
+});
+
+
+
+
+</script>
+	
+		
+	
+	<!-- +++++ Footer Section +++++ -->
+	
+	
+	
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="assets/js/bootstrap.min.js"></script>
+  </body>
+</html>

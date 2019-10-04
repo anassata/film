@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="orgfilmproject:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/orgfilmproject_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="orgfilmproject" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.15" />
+          <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.6.1" />
+          <element id="library" level="project" name="Maven: joda-time:joda-time:2.10.2" />
+          <element id="library" level="project" name="Maven: commons-dbutils:commons-dbutils:1.7" />
+          <element id="library" level="project" name="Maven: net.sf.flexjson:flexjson:3.3" />
+          <element id="library" level="project" name="Maven: org.jetbrains:annotations-java5:17.0.0" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="orgfilmproject/web/Web" />
+      <element id="directory" name="webapp" />
+    </root>
+  </artifact>
+</component>
